@@ -1,0 +1,63 @@
+<html>
+
+	<head>
+		<script src="../js/jquery-1.10.2.min.js"></script>
+		<style>
+			textarea, pre { -moz-tab-size:2; -o-tab-size:2; tab-size:2; }
+			textarea { width: 500px; height: 250px; }
+		</style>
+	</head>
+
+
+	<form>
+		<div>
+			<textarea placeholder="Your HTML code"></textarea>
+		</div>
+		<div>
+			<input type="button" value="Convert" />
+		</div>
+		<div class="result">
+			<textarea placeholder="The result"></textarea>
+		</div>
+		
+	</form>
+	
+	<script>
+		// The application
+		$("form input[type=button]").click(function(event){
+			event.preventDefault();
+			var html = $("form textarea").val();
+			
+			$("form div.result textarea").val( htmlEntities(html) );
+		});
+		
+		// Convert HTML to entities
+		function htmlEntities(str) {
+			return String(str).replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		}
+		
+		// Using tab in textarea
+		$(document).delegate('textarea', 'keydown', function(e) {
+			var keyCode = e.keyCode || e.which;
+
+			if (keyCode == 9) {
+				e.preventDefault();
+				var start = $(this).get(0).selectionStart;
+				var end = $(this).get(0).selectionEnd;
+
+				// set textarea value to: text before caret + tab + text after caret
+				$(this).val($(this).val().substring(0, start)
+										+ "\t"
+										+ $(this).val().substring(end));
+
+				// put caret at right position again
+				$(this).get(0).selectionStart =
+				$(this).get(0).selectionEnd = start + 1;
+			}
+		});
+	</script>
+
+</html>

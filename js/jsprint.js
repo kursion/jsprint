@@ -11,7 +11,8 @@ function YL_Doc(){
     "summary-entry": "yld-summary-entry",
     "img-legend": "yld-img-legend",
     "bibliography": "yld-bibliography",
-    "imageography": "yld-imageography"
+    "imageography": "yld-imageography",
+    "pagenbr": "yld-pagenbr"
   };
   _CONFIG.settings = {
     "title-nbr": true, // Show or hide number aside the titles

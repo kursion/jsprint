@@ -69,10 +69,13 @@ function YL_Doc(){
         "<span class='link'><a href='"+link+"'>"+link+"</a></div>");
     });
   };
-
-  var _getHeader = function(){
-    return "<div class="+_CONFIG.class["header"]+">"+
-        $("."+_CONFIG.class["def-header"]).html()+"</div>"
+  
+  //page header
+  if($("."+_CONFIG.class["def-header"]).size() != '0'){
+    var _getHeader = function(){
+      return "<div class="+_CONFIG.class["header"]+">"+
+          $("."+_CONFIG.class["def-header"]).html()+"</div>"
+    }
   }
 
   // Creating summary from titles

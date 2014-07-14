@@ -72,7 +72,7 @@ function YL_Doc(){
 
   var _getHeader = function(){
     return "<div class="+_CONFIG.class["header"]+">"+
-        $("."+_CONFIG.class["def-header"]).html()+"</div>"
+        ($("."+_CONFIG.class["def-header"]).html()||"")+"</div>"
   }
 
   // Creating summary from titles

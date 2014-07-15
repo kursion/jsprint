@@ -175,3 +175,6 @@ Just edit the ***theme.css*** as you wish. It is not recommended to update
 ## I don't want my title to appear in the summary
 When creating your title tag (H1, H2, H3, ...) don't add the class **yld-title**
 to it. This will avoid the title to be added into the summary.
+
+# Contributions
+Yves Lange (author)

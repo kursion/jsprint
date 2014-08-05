@@ -1,0 +1,8 @@
+{
+  "name": "jsprint",
+  "version": "0.1.0",
+  "main": "release/jsprint.js",
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}

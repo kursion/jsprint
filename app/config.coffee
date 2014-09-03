@@ -2,18 +2,18 @@ module.exports = exp = {}
 
 exp.Main = class Main
   CLASS =
-    title:           "yld-title"
+    title:           "jsprint-title"
     page:            "jsprint-page"
     header:          "jsprint-page-header"
     footer:          "jsprint-page-footer"
-    summary:         "yld-summary"
-    bibliography:    "yld-bibliography"
-    imageography:    "yld-imageography"
+    summary:         "jsprint-summary"
+    bibliography:    "jsprint-bibliography"
+    imageography:    "jsprint-imageography"
     pagenbr:         "jsprint-pagenbr"
-    "def-header":    "yld-def-header"
+    "def-header":    "jsprint-def-header"
     "page-summary":  "jsprint-page-summary"
-    "summary-entry": "yld-summary-entry"
-    "img-legend":    "yld-img-legend"
+    "summary-entry": "jsprint-summary-entry"
+    "img-legend":    "jsprint-img-legend"
   VERSION = "1.1"
   CONFIG =
     summary:

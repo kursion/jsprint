@@ -14,4 +14,4 @@ exports.config =
         'vendor.js': /^vendor/
         'jsprint.js': /^app/
     stylesheets:
-      joinTo: 'jsprint.css': /^app\/styles\//
+      joinTo: 'jsprint.css': /^app\/styles/

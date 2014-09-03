@@ -15,19 +15,19 @@ pre{
   text-align: right;
   margin-top: 10px;
 }
-.yld-def-header{ display: none; }
+.jsprint-def-header{ display: none; }
 .jsprint-page-header{
   postition: absolute;
   top: 0px;
 }
 
 /* Summary */
-.yld-summary-entry{ border-bottom: #afafaf 1px dotted; }
-.yld-summary-H1{ font-size: 1.2em; font-weight: bold; }
-.yld-summary-H2{ font-size: 1.1em; padding-left: 10px; }
-.yld-summary-H3{ font-size: 1em; padding-left: 20px; }
-.yld-summary-H4{ font-size: 0.9em; padding-left: 30px; }
-.yld-summary-entry div{ width: 20px; float: right; }
+.jsprint-summary-entry{ border-bottom: #afafaf 1px dotted; }
+.jsprint-summary-H1{ font-size: 1.2em; font-weight: bold; }
+.jsprint-summary-H2{ font-size: 1.1em; padding-left: 10px; }
+.jsprint-summary-H3{ font-size: 1em; padding-left: 20px; }
+.jsprint-summary-H4{ font-size: 0.9em; padding-left: 30px; }
+.jsprint-summary-entry div{ width: 20px; float: right; }
 
 /* Page content */
 
@@ -39,7 +39,7 @@ pre{
   position: relative;
 }
 
-.yld-summary{
+.jsprint-summary{
   padding-top: 20px;
 }
 
@@ -53,7 +53,7 @@ pre{
   padding-right: 10px;
   padding-bottom: 10px;
 }
-.yld-img-legend{
+.jsprint-img-legend{
   text-align: center;
   font-style: italic;
 }
@@ -207,7 +207,7 @@ pre{
 
 
 /* Summary color */
-.yld-summary{ color: #9f9f9f; }
+.jsprint-summary{ color: #9f9f9f; }
 
 
 /* Header */
@@ -220,7 +220,7 @@ pre{
 
 
 /* Image legend style */
-.yld-img-legend{
+.jsprint-img-legend{
   color: #9f9f9f;
   font-size: 0.7em;
 }

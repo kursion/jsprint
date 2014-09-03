@@ -111,7 +111,7 @@ pre{
 
 
 /* Summary color */
-.yld-summary{ color: #9f9f9f; }
+.jsprint-summary{ color: #9f9f9f; }
 
 
 /* Header */
@@ -124,7 +124,7 @@ pre{
 
 
 /* Image legend style */
-.yld-img-legend{
+.jsprint-img-legend{
   color: #9f9f9f;
   font-size: 0.7em;
 }

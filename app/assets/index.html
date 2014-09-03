@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Test of JSPrint</title>
+
+    <!-- Default jsprint CSS style -->
+    <link rel="stylesheet" type="text/css" href="jsprint.css" />
+  </head>
+  <body>
+
+    <!-- Header definition for JSP -->
+    <div class="yld-def-header">
+      <p>JS_Print by Yves Lange<br>
+      This is my header - <i>on every pages</i></p>
+    </div>
+
+    <!-- This is a normal page with an image -->
+    <div class="yld-page homepage">
+      <h1>Travail de bachelor</h1>
+      <h2>Librairie graphique Web & JavaScript</h2>
+      <img src="images/img.png" style="width: 200px; margin-top: 50px;" title="Example of image" ref="Yves Lange"/>
+      <p>Author: Yves Lange/Kursion</p>
+    </div>
+
+    <!-- This is a normal page that -->
+    <div class="yld-page yld-page-summary">
+      <h1 class="yld-title">Summary</h1>
+      <!-- Here is the summary AUTO-GENERATED -->
+      <div class="yld-summary"></div>
+    </div>
+
+    <!-- This is a normal page -->
+    <div class="yld-page">
+      <h1 class="yld-title">Introduction</h1>
+      <p>Check the <a href='example.html'>example</a> of this example in order to learn how to use this module</p>
+      <p>You can check the documentation on the repository: <a href='http://bitbucket.org/kursion/yl_jsprint'>YL_JSPrint</a>
+      <h2 class="yld-title">Subsection H2</h2>
+      <p>Here is an example of a subsection</p>
+      <h3 class="yld-title">Subsection H3</h3>
+      <p>Here is an example of a subsection</p>
+      <h4 class="yld-title">Subsection H4</h4>
+      <p>Here is an example of a subsection</p>
+    </div>
+
+    <!-- This is a normal page -->
+    <div class="yld-page">
+      <h1 class="yld-title">Functionalities</h1>
+      <p>- Printable with all browsers</p>
+      <p>- CSS, JavaScript (+jQuery) only</p>
+      <p>- Easy to learn, use and adapt</p>
+      <p>- Header can be customize</p>
+      <p>- Auto-generating of the summary</p>
+      <p>- Auto-generating pages number</p>
+    </div>
+
+    <div class="yld-page">
+      <h1 class="yld-title">Example of auto separated page</h1>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at tempor metus. Mauris ut ante a lacus ornare tempor eget et nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem ipsum, dictum vitae mauris eget, congue consectetur neque. Cras faucibus diam a nisi mattis malesuada. Proin pulvinar vitae erat ac porttitor. Curabitur sit amet justo sed sem pretium consequat ut at nisl. Curabitur mattis mauris ut egestas pretium. Fusce imperdiet felis sit amet lacus accumsan, sit amet tristique lacus suscipit.
+      </p>
+      <p class="note">
+        This is a sample note using the p.note class
+      <p>
+      <p>
+        <pre class="prettyprint">var str = "Some code in JavaScript, C, C++, Python, ..."; </pre>
+      </p>
+      <p>
+      Nulla vitae sem fringilla, ultrices ante vel, elementum nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam quis pretium mi. Ut dapibus nisl quis lacus interdum, a rutrum sapien imperdiet. Nunc vitae tincidunt enim. Donec ut porttitor tellus. Sed posuere ipsum diam, sed elementum quam vehicula vel. Fusce nec dapibus nisl. Curabitur gravida varius sapien sit amet sodales.
+      </p>
+      <p>
+      Sed lorem magna, scelerisque pellentesque aliquet vel, gravida non eros. Aliquam erat volutpat. Vestibulum eu arcu id risus dapibus accumsan quis hendrerit enim. Nulla eleifend lorem ut interdum mollis. Phasellus eleifend justo quis hendrerit placerat. Duis sodales, ligula nec luctus dapibus, orci mauris condimentum purus, in adipiscing dolor nisi at mauris. Morbi facilisis rhoncus ipsum, ut luctus orci dictum non. Ut nulla metus, suscipit nec sapien at, viverra euismod nisi. Nullam non consectetur lorem. Morbi ipsum tellus, condimentum at tortor tempus, tempor lobortis sem. Praesent orci est, feugiat sit amet purus quis, convallis sollicitudin metus. Nulla semper consectetur erat, id interdum orci. Nullam nec ornare ipsum, ut pulvinar velit.
+      </p>
+      <p>
+      Nulla placerat risus iaculis, iaculis velit ut, gravida justo. Integer id euismod enim. Nunc rhoncus nunc nec est tempus, sit amet condimentum nisl consectetur. Nulla ultrices lorem ut suscipit placerat. Donec eu massa dictum, blandit dolor eget, tempus sapien. Cras ac aliquet augue, ac vehicula ante. Quisque congue lectus id arcu commodo convallis.
+      </p>
+      <p>
+      Nullam varius mauris ante, suscipit placerat velit tristique nec. Vivamus faucibus nibh sed aliquam sagittis. Duis eu bibendum orci, eget vestibulum enim. Aenean ut faucibus leo. Donec euismod tristique odio nec viverra. Suspendisse sem arcu, pulvinar quis nibh suscipit, ornare eleifend nisl. Donec molestie tortor vitae tincidunt pharetra. Donec fermentum suscipit massa, nec ultricies sem tincidunt ut. Morbi mattis sagittis purus eu tincidunt. Quisque dictum tortor non ligula scelerisque dictum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sed pellentesque nibh. Nulla varius, elit sed sollicitudin pulvinar, augue metus pharetra metus, in ultricies lorem risus in ligula. Ut varius sapien tortor. Quisque imperdiet euismod leo pharetra suscipit.
+      </p>
+      <p>
+      Phasellus consequat gravida mauris vitae aliquam. Aliquam eleifend est ligula, fringilla vestibulum purus vehicula vel. Ut sed sollicitudin nibh. Donec aliquet gravida odio id volutpat. Phasellus ac ante a lacus egestas egestas. Donec imperdiet malesuada libero. Vivamus fermentum a erat id congue. Sed faucibus risus quis massa vestibulum, sit amet aliquam sem lobortis. Sed dignissim, lectus quis semper ullamcorper, dolor orci bibendum lacus, quis rhoncus neque nisi ut magna. Morbi id ante in nisi aliquet tristique a ut justo. Mauris convallis nibh mauris, at aliquam nisl porta id. Donec enim nunc, ullamcorper vel felis id, pulvinar tempor libero. Integer vestibulum molestie nisi. Etiam nec quam a urna vehicula egestas nec at odio.
+      </p>
+      <p>
+      In scelerisque odio metus, non feugiat neque egestas vestibulum. Proin ut enim placerat, lacinia ante nec, convallis orci. Quisque lacinia magna ut leo pulvinar facilisis ac et mi. Nulla eget molestie turpis. Quisque vestibulum euismod justo at tincidunt. Sed volutpat turpis sapien, et sodales lorem tristique in. Ut gravida, ligula id molestie lacinia, sapien tellus faucibus metus, eu sagittis quam augue nec dolor. Duis non ligula a mi blandit molestie. Etiam semper felis a neque tincidunt aliquet. Suspendisse augue velit, volutpat sed sollicitudin sit amet, tristique quis nisl. Vestibulum quis semper nisi. Nam sagittis eu elit a accumsan.
+      </p>
+      <p>
+      Nunc iaculis vitae tellus quis lobortis. Mauris convallis viverra magna id rutrum. Ut bibendum malesuada aliquam. Proin sit amet sodales orci, nec aliquet turpis. Morbi vel eros orci. Phasellus a pulvinar urna, ac laoreet magna. Proin non turpis malesuada, blandit mauris in, ultricies velit. Duis hendrerit suscipit mi nec facilisis.
+      </p>
+    </div>
+
+    <div class="yld-page">
+      <p>
+      Vestibulum a consequat turpis, vel congue turpis. Nullam placerat leo porttitor risus tincidunt faucibus. Nulla venenatis aliquam orci, commodo lobortis leo egestas vel. Nullam nec magna mollis, feugiat mi vel, eleifend velit. Nunc iaculis, libero at consectetur dapibus, urna sem egestas leo, quis ultrices neque lorem vel urna. Donec laoreet est nec nisl dignissim molestie. Aenean ut facilisis turpis, et pharetra eros. Nulla libero libero, vehicula vitae auctor ut, scelerisque nec nunc. Sed facilisis rhoncus leo, et accumsan magna congue pharetra. Donec lacinia eu lectus nec cursus. Maecenas ullamcorper augue tincidunt porttitor tempor. Quisque posuere, felis sed aliquam auctor, turpis erat molestie libero, at porta diam massa vitae ligula. Sed non est in elit mattis dictum. Praesent ac porttitor nisi. Sed lacinia, magna a porta venenatis, urna lorem pellentesque neque, a auctor nisi dui sed nisi.
+      </p>
+      <p>
+      Curabitur consectetur libero id diam varius, quis commodo justo adipiscing. Phasellus interdum consectetur malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas adipiscing commodo lacus, quis tempor lorem eleifend ac. Donec iaculis sit amet dui nec porttitor. Nunc id leo at ligula fringilla fringilla sed hendrerit diam. Phasellus facilisis at est a suscipit. Donec ac sollicitudin neque, non accumsan nibh. Donec a risus mi. Suspendisse potenti. Quisque viverra nunc ut urna tincidunt, et ultricies odio eleifend. Nam volutpat turpis nec sollicitudin gravida. Nulla dignissim ipsum ut ligula pellentesque, eget dictum massa luctus. Donec consequat odio vel massa congue lobortis. In sem neque, pretium eu tincidunt a, laoreet eget justo.
+      </p>
+      <p>
+      Morbi tincidunt, dolor vel consequat scelerisque, ante urna ultricies dolor, in rutrum dui magna eu dolor. Aenean pulvinar semper tellus, eget venenatis ante cursus nec. Sed non porta eros, vitae sodales eros. In elementum justo nec arcu cursus, sit amet dignissim sapien elementum. Cras ullamcorper ut sem vitae suscipit. Sed commodo nulla et mattis fringilla. Sed mattis tortor placerat eros dictum facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras malesuada velit a neque feugiat vulputate. Aliquam ut dui odio.
+      </p>
+      <p>
+      Integer nibh diam, lobortis sed leo et, facilisis faucibus dolor. Praesent varius euismod ultricies. Sed condimentum euismod nulla dignissim porta. Donec dictum ipsum ac elit sodales dictum. Maecenas sollicitudin, eros non iaculis condimentum, purus justo scelerisque erat, et tincidunt turpis velit ut sapien. Mauris ut risus in metus lobortis lacinia ac vel velit. Integer scelerisque, magna eget feugiat adipiscing, turpis diam laoreet leo, eget pharetra urna sem id diam. Mauris augue elit, pharetra quis ipsum sagittis, consectetur interdum odio. Maecenas vel rutrum tortor. Donec posuere risus eget velit ullamcorper, at posuere tellus laoreet. Integer elementum dignissim urna eu elementum.
+      </p>
+      <p>
+      Sed molestie, erat vel consectetur cursus, enim purus varius orci, nec pulvinar tortor nunc vel tellus. Proin vulputate lectus ac molestie cursus. Mauris vel eros ut sapien porttitor gravida vel eu lacus. Phasellus quis venenatis nibh. Fusce sit amet ullamcorper leo. Praesent purus urna, aliquet nec lorem eu, accumsan tempus lorem. Cras vehicula faucibus consequat. Vestibulum quis orci lectus.
+      </p>
+      <p>
+      Vivamus velit enim, hendrerit ut nulla id, commodo blandit eros. In sed felis turpis. In porta, nisi sit amet posuere adipiscing, quam augue ultricies nisl, et tempor velit massa sed justo. Morbi nulla diam, placerat vitae rutrum quis, sodales quis tortor. Ut vel lacus tempus, fermentum nulla ac, pretium erat. Nulla facilisi. Quisque libero massa, vulputate quis molestie ut, adipiscing non nisi. Nullam facilisis, felis in fringilla aliquam, libero dui rhoncus odio, non tincidunt metus nibh vitae augue. Quisque id dui eleifend, semper nunc sit amet, egestas nisi. Sed rhoncus sem magna, vitae tincidunt nunc pellentesque ut. Mauris consequat sodales est, vitae interdum tortor tempor ut. Nam non mi rutrum libero condimentum condimentum. Proin dapibus sollicitudin auctor. In aliquet massa nibh, sit amet vulputate lectus eleifend ut.
+      </p>
+      <p>
+      Vivamus varius purus elit, ac consectetur risus tristique eu. Ut nec condimentum ante, eget laoreet turpis. Maecenas at magna ac velit faucibus vehicula. Praesent interdum mi enim, quis tempus diam varius eu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam tempus lorem tincidunt, condimentum eros eget, viverra est. Phasellus cursus in quam in elementum. Aliquam erat volutpat. Cras sollicitudin pellentesque justo vel scelerisque. Suspendisse imperdiet eros eu ante tincidunt tincidunt. Aenean sit amet arcu tortor. Sed fermentum eget ligula id viverra. Aenean gravida pretium justo, et scelerisque urna bibendum a.
+      </p>
+      <p>
+      Morbi rutrum, tellus et laoreet laoreet, metus erat vestibulum risus, at sagittis elit metus sit amet arcu. Donec mollis tincidunt eleifend. Morbi eget euismod metus. Donec euismod mattis justo, vitae mattis sapien mollis quis. Maecenas ullamcorper metus eros, non blandit est rhoncus quis. Aliquam in mauris et elit porttitor convallis ut vel ante. Vestibulum congue aliquet massa quis auctor. Duis sapien augue, aliquet ac urna in, consectetur tempus quam. In hac habitasse platea dictumst. Duis dictum imperdiet fringilla. Nam diam elit, consequat sit amet justo nec, adipiscing laoreet tellus. Vivamus ut sapien ligula. Nullam interdum tristique tortor, ut adipiscing dolor dictum non. Curabitur posuere, felis vel sagittis eleifend, tellus sapien eleifend turpis, id posuere justo eros id leo.
+      </p>
+    </div>
+
+    <div class="yld-page">
+      <p>
+      Donec iaculis, arcu eget euismod dapibus, ante ligula convallis nisi, eu luctus mauris libero a tortor. Vestibulum ultricies enim justo, sit amet euismod neque pellentesque at. Phasellus sed augue sit amet mauris iaculis dictum. Nunc at nunc ut mi ultricies congue quis quis urna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sodales orci sapien, vel suscipit nisl euismod rhoncus. Vestibulum sed justo ac mauris dapibus tempus quis eget orci. Nullam nec tortor dolor. Pellentesque mollis purus eu eros fermentum fermentum. Praesent quis suscipit erat. In lacinia ultrices pellentesque. Aliquam erat volutpat. Aliquam et venenatis lacus, ac laoreet justo.
+      </p>
+      <p>
+      Sed ac eros euismod, tincidunt arcu scelerisque, viverra neque. Phasellus et euismod mauris. Nunc id pellentesque ligula. Duis quis metus ornare, suscipit augue non, varius lectus. Proin mollis volutpat risus non imperdiet. Nam velit leo, facilisis ut porttitor vel, tincidunt quis eros. Aenean facilisis ultricies erat, sed blandit sem sagittis id. Duis egestas adipiscing nunc, faucibus condimentum nunc semper in. Vivamus at auctor metus. Nunc non mi dui. Duis molestie fringilla justo, ut placerat odio volutpat in. Praesent a augue at sapien blandit ultricies non eu erat.
+      </p>
+      <p>
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce egestas lacus a justo dapibus, vel dictum libero viverra. Maecenas ac lacus dolor. Donec dictum vulputate neque sed eleifend. Curabitur lacinia augue eget semper suscipit. Sed metus felis, elementum et justo a, vestibulum pretium augue. Phasellus lectus est, pulvinar non arcu vitae, dictum mattis tortor. Nunc commodo diam vel lectus auctor accumsan. Morbi vehicula pellentesque sem, sit amet facilisis diam sodales et. Phasellus ac mattis sem, sed elementum libero. Nulla facilisi.
+      </p>
+    </div>
+
+    <div class="yld-page">
+      <h1 class="yld-title">Bibliography</h1>
+      <!-- Here is the biblography AUTO-GENERATED -->
+      <div class="yld-bibliography"></div>
+    </div>
+
+    <div class="yld-page">
+      <h1 class="yld-title">Images</h1>
+      <!-- Here is the imageography AUTO-GENERATED -->
+      <div class="yld-imageography"></div>
+    </div>
+
+  </body>
+
+  <!-- Librairies -->
+  <script type="text/javascript" src="vendor.js"></script>
+  <script type="text/javascript" src="jsprint.js"></script>
+  <script>
+    require("jsprint/app");
+  </script>
+</html>

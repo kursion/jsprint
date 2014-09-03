@@ -3,7 +3,7 @@ build:
 	@./node_modules/brunch/bin/brunch build
 watch:
 	@echo "Running the watcher (BRUNCH)"
-	@./node_modules/brunch/bin/brunch watch
+	@./node_modules/brunch/bin/brunch watch --server
 install:
 	#@echo "Installing brunch & bower (NPM)"
 	#@sudo npm install -g brunch

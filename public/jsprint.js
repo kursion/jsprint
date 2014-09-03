@@ -90,116 +90,34 @@
   globals.require.list = list;
   globals.require.brunch = true;
 })();
-require.register("jsprint/jsprint", function(exports, require, module) {
-var YL_Doc, doc;
+require.register("jsprint/app", function(exports, require, module) {
+var Jsprint, M, jsprint;
 
-YL_Doc = void 0;
+M = {
+  config: require('jsprint/config')
+};
 
-doc = void 0;
+Jsprint = (function() {
+  var CONFIG;
 
-YL_Doc = function() {
-  var aRef, adaptPage, createSummary, headerFooter, imgLegends, _CONFIG, _getHeader;
-  aRef = void 0;
-  adaptPage = void 0;
-  createSummary = void 0;
-  headerFooter = void 0;
-  imgLegends = void 0;
-  _CONFIG = void 0;
-  _getHeader = void 0;
-  _CONFIG = {};
-  _CONFIG["class"] = {
-    title: "yld-title",
-    page: "yld-page",
-    "def-header": "yld-def-header",
-    header: "yld-page-header",
-    footer: "yld-page-footer",
-    "page-summary": "yld-page-summary",
-    summary: "yld-summary",
-    "summary-entry": "yld-summary-entry",
-    "img-legend": "yld-img-legend",
-    bibliography: "yld-bibliography",
-    imageography: "yld-imageography",
-    pagenbr: "yld-pagenbr"
-  };
-  _CONFIG.settings = {
-    "title-nbr": true,
-    "page-nbr": true,
-    "page-outof": true,
-    "page-outof-symbole": "/",
-    "auto-refresh": false,
-    "auto-interval": 2000
-  };
-  _CONFIG.counters = {
-    img: 0,
-    a: 0
-  };
-  _CONFIG.summary = {
-    nbrtitle: 45
-  };
-  this.init = function() {
-    imgLegends();
-    aRef();
-    headerFooter();
-    createSummary();
-    if (_CONFIG.settings["auto-refresh"]) {
-      return setInterval("location.reload(true)", _CONFIG.settings["auto-interval"]);
+  CONFIG = new M.config.Main();
+
+  function Jsprint() {
+    if (typeof console.info === "function") {
+      console.info("Jsprint version:", CONFIG.getVersion());
     }
+    this.init();
+  }
+
+  Jsprint.prototype.init = function() {
+    this.renderImgLegends();
+    this.headerFooter();
+    this.aRef();
+    return this.createSummary();
   };
-  imgLegends = function() {
-    return $("img").each(function() {
-      var ref, title;
-      ref = void 0;
-      title = void 0;
-      title = $(this).attr("title");
-      ref = $(this).attr("ref");
-      if (title) {
-        _CONFIG.counters["img"]++;
-        $(this).after("<div class='" + _CONFIG["class"]["img-legend"] + "'>" + title + " <sup>" + _CONFIG.counters["img"] + "</sup></div>");
-        return $("." + _CONFIG["class"]["imageography"]).append("<div>[" + _CONFIG.counters["img"] + "] " + title + " <i>(" + ref + "</i>)</div>");
-      }
-    });
-  };
-  aRef = function() {
-    return $("a").each(function() {
-      var link, ref, show, text;
-      link = void 0;
-      ref = void 0;
-      show = void 0;
-      text = void 0;
-      _CONFIG.counters["a"]++;
-      link = $(this).attr("href");
-      text = $(this).text();
-      ref = $(this).attr("ref");
-      show = text;
-      if (ref !== void 0) {
-        show = ref + "(" + text + ")";
-      }
-      $(this).append(" <sup>[" + _CONFIG.counters["a"] + "]</sup>");
-      return $("." + _CONFIG["class"]["bibliography"]).append("<div>" + "<span class='index'>[" + _CONFIG.counters["a"] + "] </span>" + "<span class='text'>" + show + ": " + "<span class='link'><a href='" + link + "'>" + link + "</a></div>");
-    });
-  };
-  _getHeader = function() {
-    return "<div class=" + _CONFIG["class"]["header"] + ">" + ($("." + _CONFIG["class"]["def-header"]).html() || "") + "</div>";
-  };
-  headerFooter = function() {
-    return $("." + _CONFIG["class"]["page"]).each(function(i, page) {
-      var outof, pagenbr;
-      outof = void 0;
-      pagenbr = void 0;
-      pagenbr = i + 1;
-      $(page).prepend(_getHeader());
-      $(page).append("<div class=" + _CONFIG["class"]["footer"] + "></div>");
-      outof = "";
-      if (_CONFIG.settings["page-outof"]) {
-        outof = _CONFIG.settings["page-outof-symbole"] + $(".yld-page").length;
-      }
-      if (_CONFIG.settings["page-nbr"]) {
-        return $(page).find("." + _CONFIG["class"]["footer"]).append("<div class=" + _CONFIG["class"]["pagenbr"] + ">" + pagenbr + outof + "</div>");
-      }
-    });
-  };
-  createSummary = function() {
-    var JSP_TITLE2_NBR, JSP_TITLE3_NBR, JSP_TITLE4_NBR, JSP_TITLE_NBR, nbrtitle, pagenbr;
+
+  Jsprint.prototype.createSummary = function() {
+    var JSP_TITLE2_NBR, JSP_TITLE3_NBR, JSP_TITLE4_NBR, JSP_TITLE_NBR, header, nbrtitle, pagenbr;
     JSP_TITLE2_NBR = void 0;
     JSP_TITLE3_NBR = void 0;
     JSP_TITLE4_NBR = void 0;
@@ -212,9 +130,10 @@ YL_Doc = function() {
     JSP_TITLE4_NBR = 0;
     pagenbr = 0;
     nbrtitle = 0;
-    return $("." + _CONFIG["class"]["page"]).each(function(i, page) {
+    header = this._getHeader();
+    return $("." + CONFIG.getClass("page")).each(function(i, page) {
       pagenbr++;
-      return $(page).find("." + _CONFIG["class"]["title"]).each(function(_, title) {
+      return $(page).find("." + CONFIG.getClass("title")).each(function(_, title) {
         var h_nbr, t, tag;
         h_nbr = void 0;
         t = void 0;
@@ -242,60 +161,133 @@ YL_Doc = function() {
           JSP_TITLE4_NBR++;
           h_nbr = JSP_TITLE_NBR + "." + JSP_TITLE2_NBR + "." + JSP_TITLE3_NBR + "." + JSP_TITLE4_NBR;
         }
-        if (_CONFIG.settings["page-nbr"]) {
-          $(title).text(h_nbr + " " + t);
-        }
-        if (nbrtitle % _CONFIG.summary["nbrtitle"] === 0) {
+        $(title).text(h_nbr + " " + t);
+        if (nbrtitle % CONFIG.get("summary", "nbrtitle") === 0) {
           $("." + _CONFIG["class"]["page-summary"]).last().after("</div><div class='" + _CONFIG["class"]["page-summary"] + " " + _CONFIG["class"]["page"] + "'><div class='" + _CONFIG["class"]["summary"] + "'></div>");
-          $("." + _CONFIG["class"]["page-summary"]).last().prepend(_getHeader());
+          $("." + CONFIG.getClass("page-summary")).last().prepend(header);
         }
-        return $("." + _CONFIG["class"]["summary"]).last().append("<div class='" + _CONFIG["class"]["summary"] + "-" + tag + " " + _CONFIG["class"]["summary-entry"] + "'>" + h_nbr + " " + t + "<div>" + pagenbr + "</div></div>");
+        return $("." + CONFIG.getClass("summary")).last().append("<div class='" + CONFIG.getClass("summary") + "-" + tag + " " + CONFIG.getClass("summary-entry") + "'>" + h_nbr + " " + t + "<div>" + pagenbr + "</div></div>");
       });
     });
   };
-  return adaptPage = function() {
-    return $("." + JSP_PAGE_CLASS).each(function(i, page) {
-      var page_elements, pages, tmp_content, totalH, _results;
-      page_elements = void 0;
-      pages = void 0;
-      tmp_content = void 0;
-      totalH = void 0;
-      totalH = 0;
-      pages = [$(this)];
-      page_elements = [];
-      tmp_content = [];
-      $(this).children().each(function() {
-        var elH, new_page;
-        elH = void 0;
-        new_page = void 0;
-        elH = $(this).outerHeight();
-        if ((totalH + elH) < JSP_PAGE_PIXEL) {
-          tmp_content.push($(this));
-          return totalH += elH;
-        } else {
-          page_elements.push(tmp_content);
-          tmp_content = [$(this)];
-          totalH = elH;
-          new_page = createPage("?");
-          pages[pages.length - 1].after(new_page);
-          return pages.push(new_page);
-        }
-      });
-      page_elements.push(tmp_content);
-      i = 0;
-      _results = [];
-      while (i < page_elements.length) {
-        pages[i].text("").append(page_elements[i]);
-        _results.push(i++);
+
+  Jsprint.prototype.aRef = function() {
+    var counter;
+    counter = 0;
+    return $("a").each(function() {
+      var link, ref, show, text;
+      counter++;
+      link = void 0;
+      ref = void 0;
+      show = void 0;
+      text = void 0;
+      link = $(this).attr("href");
+      text = $(this).text();
+      ref = $(this).attr("ref");
+      show = text;
+      if (ref !== void 0) {
+        show = ref + "(" + text + ")";
       }
-      return _results;
+      $(this).append(" <sup>[" + counter + "]</sup>");
+      return $("." + CONFIG.getClass("bibliography")).append("<div>" + "<span class='index'>[" + counter + "] </span>" + "<span class='text'>" + show + ": " + "<span class='link'><a href='" + link + "'>" + link + "</a></div>");
     });
   };
-};
 
-doc = new YL_Doc();
+  Jsprint.prototype.renderImgLegends = function() {
+    var counter;
+    counter = 0;
+    return $("img").each(function() {
+      var ref, title;
+      title = $(this).attr("title");
+      ref = $(this).attr("ref");
+      if ((title != null) || (ref != null)) {
+        counter++;
+        $(this).after("          <div class='" + (CONFIG.getClass("img-legend")) + "'>          " + title + " <sup>" + counter + "</sup></div>");
+        return $("." + CONFIG.getClass("imageography")).append("          <div>[" + counter + "] " + title + " <i>(" + ref + "</i>)</div>");
+      }
+    });
+  };
 
-doc.init();
+  Jsprint.prototype._getHeader = function() {
+    return "<div class=" + CONFIG.getClass("header") + ">" + ($("." + CONFIG.getClass("def-header")).html() || "") + "</div>";
+  };
+
+  Jsprint.prototype.headerFooter = function() {
+    var _this = this;
+    return $("." + CONFIG.getClass("page")).each(function(i, page) {
+      var outof, pagenbr;
+      outof = void 0;
+      pagenbr = void 0;
+      pagenbr = i + 1;
+      $(page).prepend(_this._getHeader());
+      $(page).append("<div class=" + CONFIG.getClass("footer") + "></div>");
+      outof = "";
+      outof = "/" + $(".yld-page").length;
+      return $(page).find("." + CONFIG.getClass("footer")).append("<div class=" + CONFIG.getClass("pagenbr") + ">" + pagenbr + outof + "</div>");
+    });
+  };
+
+  return Jsprint;
+
+})();
+
+jsprint = new Jsprint();
+});
+
+;require.register("jsprint/config", function(exports, require, module) {
+var Main, exp;
+
+module.exports = exp = {};
+
+exp.Main = Main = (function() {
+  var CLASS, CONFIG, VERSION;
+
+  CLASS = {
+    title: "yld-title",
+    page: "yld-page",
+    header: "yld-page-header",
+    footer: "yld-page-footer",
+    summary: "yld-summary",
+    bibliography: "yld-bibliography",
+    imageography: "yld-imageography",
+    pagenbr: "yld-pagenbr",
+    "def-header": "yld-def-header",
+    "page-summary": "yld-page-summary",
+    "summary-entry": "yld-summary-entry",
+    "img-legend": "yld-img-legend"
+  };
+
+  VERSION = "1.1";
+
+  CONFIG = {
+    summary: {
+      nbrtitle: 45
+    }
+  };
+
+  function Main() {
+    null;
+  }
+
+  Main.prototype.print = function() {
+    return console.log("CLASSES", CLASS);
+  };
+
+  Main.prototype.getClass = function(className) {
+    return CLASS[className];
+  };
+
+  Main.prototype.getVersion = function() {
+    return VERSION;
+  };
+
+  Main.prototype.get = function(configName, option) {
+    return CONFIG[configName][option];
+  };
+
+  return Main;
+
+})();
 });
 
 ;

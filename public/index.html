@@ -4,7 +4,7 @@
     <title>Test of JSPrint</title>
 
     <!-- Default jsprint CSS style -->
-    <link rel="stylesheet" type="text/css" href="public/jsprint.css" />
+    <link rel="stylesheet" type="text/css" href="jsprint.css" />
   </head>
   <body>
 
@@ -18,7 +18,7 @@
     <div class="yld-page homepage">
       <h1>Travail de bachelor</h1>
       <h2>Librairie graphique Web & JavaScript</h2>
-      <img src="public/images/img.png" style="width: 200px; margin-top: 50px;" title="Example of image" ref="Yves Lange"/>
+      <img src="images/img.png" style="width: 200px; margin-top: 50px;" title="Example of image" ref="Yves Lange"/>
       <p>Author: Yves Lange/Kursion</p>
     </div>
 
@@ -141,6 +141,9 @@
   </body>
 
   <!-- Librairies -->
-  <script type="text/javascript" src="public/vendor.js"></script>
-  <script type="text/javascript" src="public/jsprint.js"></script>
+  <script type="text/javascript" src="vendor.js"></script>
+  <script type="text/javascript" src="jsprint.js"></script>
+  <script>
+    require("jsprint/app");
+  </script>
 </html>

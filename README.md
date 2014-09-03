@@ -9,6 +9,15 @@ directly with HTML, CSS, JS.
 > correct), then print. On windows you can install CutePDF Writer to export document from
 > firefox to PDF (but Chrome is better).
 
+# Printing
+In the dialog box (of Chrome), make sure to choose those settings:
+
+1. Paper size: "A4"
+2. Disable "Headers and footers"
+3. Margins: "Default"
+4. Check in the preview window that everythings is alright
+5. Print ;)
+
 # Install
 > You will need to have jQuery in order to make JSPrint works.
 

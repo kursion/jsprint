@@ -72,7 +72,7 @@ table tr th{
   color: #fefefe;
   font-size: 14px;
   text-align: left;
-  
+
 }
 table tr td{
   font-size: 12px;
@@ -103,11 +103,11 @@ pre{
 /*****************************************************/
 
 /* Page border */
-.yld-page{ border: #cecece 1px solid; }
+.jsprint-page{ border: #cecece 1px solid; }
 
 
 /* Page number color */
-.yld-page-footer .yld-pagenbr{ color: #9f9f9f; }
+.jsprint-page-footer .jsprint-pagenbr{ color: #9f9f9f; }
 
 
 /* Summary color */
@@ -115,7 +115,7 @@ pre{
 
 
 /* Header */
-.yld-page-header p{
+.jsprint-page-header p{
   text-align: right;
   color: #9f9f9f;
   border-bottom: #dfdfdf 1px solid;

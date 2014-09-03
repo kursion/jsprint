@@ -222,7 +222,7 @@ Jsprint = (function() {
       $(page).prepend(_this._getHeader());
       $(page).append("<div class=" + CONFIG.getClass("footer") + "></div>");
       outof = "";
-      outof = "/" + $(".yld-page").length;
+      outof = "/" + $("." + (CONFIG.getClass("page"))).length;
       return $(page).find("." + CONFIG.getClass("footer")).append("<div class=" + CONFIG.getClass("pagenbr") + ">" + pagenbr + outof + "</div>");
     });
   };
@@ -244,15 +244,15 @@ exp.Main = Main = (function() {
 
   CLASS = {
     title: "yld-title",
-    page: "yld-page",
-    header: "yld-page-header",
-    footer: "yld-page-footer",
+    page: "jsprint-page",
+    header: "jsprint-page-header",
+    footer: "jsprint-page-footer",
     summary: "yld-summary",
     bibliography: "yld-bibliography",
     imageography: "yld-imageography",
-    pagenbr: "yld-pagenbr",
+    pagenbr: "jsprint-pagenbr",
     "def-header": "yld-def-header",
-    "page-summary": "yld-page-summary",
+    "page-summary": "jsprint-page-summary",
     "summary-entry": "yld-summary-entry",
     "img-legend": "yld-img-legend"
   };

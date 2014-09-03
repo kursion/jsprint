@@ -117,7 +117,7 @@ class Jsprint
       $(page).append "<div class=" + CONFIG.getClass("footer") + "></div>"
       outof = ""
       outof = "/" +
-        $(".yld-page").length
+        $(".#{CONFIG.getClass("page")}").length
       $(page).find("." + CONFIG.getClass("footer")).append "<div class=" +
         CONFIG.getClass("pagenbr") + ">" + pagenbr + outof +
         "</div>"

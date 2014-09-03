@@ -11,12 +11,12 @@ pre{
 }
 
 /* Header */
-.yld-page-header{
+.jsprint-page-header{
   text-align: right;
   margin-top: 10px;
 }
 .yld-def-header{ display: none; }
-.yld-page-header{
+.jsprint-page-header{
   postition: absolute;
   top: 0px;
 }
@@ -31,7 +31,7 @@ pre{
 
 /* Page content */
 
-.yld-page{
+.jsprint-page{
   padding-left: 20px;
   padding-right: 25px;
   page-break-after: always;
@@ -43,19 +43,19 @@ pre{
   padding-top: 20px;
 }
 
-.yld-page-footer{
+.jsprint-page-footer{
   position: absolute;
   bottom: 0px;
   right: 1px;
 }
-.yld-page-footer .yld-pagenbr{
+.jsprint-page-footer .jsprint-pagenbr{
   width: 20px;
   padding-right: 10px;
   padding-bottom: 10px;
 }
 .yld-img-legend{
   text-align: center;
-  font-style: italic; 
+  font-style: italic;
 }
 
 /* desert scheme ported from vim to google prettify */
@@ -168,7 +168,7 @@ table tr th{
   color: #fefefe;
   font-size: 14px;
   text-align: left;
-  
+
 }
 table tr td{
   font-size: 12px;
@@ -199,11 +199,11 @@ pre{
 /*****************************************************/
 
 /* Page border */
-.yld-page{ border: #cecece 1px solid; }
+.jsprint-page{ border: #cecece 1px solid; }
 
 
 /* Page number color */
-.yld-page-footer .yld-pagenbr{ color: #9f9f9f; }
+.jsprint-page-footer .jsprint-pagenbr{ color: #9f9f9f; }
 
 
 /* Summary color */
@@ -211,7 +211,7 @@ pre{
 
 
 /* Header */
-.yld-page-header p{
+.jsprint-page-header p{
   text-align: right;
   color: #9f9f9f;
   border-bottom: #dfdfdf 1px solid;
@@ -238,5 +238,6 @@ p.note{
   font-style: italic;
   color: #3f3f3f;
 }
+
 
 /*# sourceMappingURL=jsprint.css.map*/

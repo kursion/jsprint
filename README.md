@@ -24,8 +24,8 @@ In the dialog box (of Chrome), make sure to choose those settings:
 1. Download jsprint.css and jsprint.js to your directory
 2. Create your .html file
 3. Import the default JSPrint CSS style: jsprint.css between 'head' tags (`<head>...</head>`),
-4. Import jQuery at the end of your html document, eg: after `</body>`
-5. Include JSprint library after jQuery
+4. Import the vendor file at the end of your html document, eg: after `</body>`
+5. Include JSprint library after jQuery and load it.
 ```html
 <!-- Between <head> tags -->
 <link rel="stylesheet" type="text/css" href="jsprint.css" />
@@ -33,14 +33,20 @@ In the dialog box (of Chrome), make sure to choose those settings:
 
 ```html
 <!-- After </body> tag -->
-<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="vendor.js"></script>
 ```
 
 ```html
-<!-- After jquery importation -->
+<!-- After vendor importation -->
 <script type="text/javascript" src="jsprint.js"></script>
 ```
 
+```html
+<!-- After jsprint.js -->
+<script>
+  require("jsprint/app");
+</script>
+```
 
 # Functionalities
 - Auto refresh the content
@@ -58,12 +64,12 @@ In the dialog box (of Chrome), make sure to choose those settings:
 # Classname glossary
 | Classname       | Description              |
 | --------------- | ------------------------ |
-| yld-def-header  | Definition of the header |
-| yld-summary     | Summary container        |
-| yld-page        | Creates a new page       |
-| yld-title       | Title of the section that is included in the summary |
-| yld-bibligraphy | Bibliography container |
-| yld-imageography | Bibliography container |
+| jsprint-def-header  | Definition of the header |
+| jsprint-summary     | Summary container        |
+| jsprint-page        | Creates a new page       |
+| jsprint-title       | Title of the section that is included in the summary |
+| jsprint-bibligraphy | Bibliography container |
+| jsprint-imageography | Bibliography container |
 
 
 # Settings
@@ -86,45 +92,45 @@ In the dialog box (of Chrome), make sure to choose those settings:
 
 
 # Create a new page
-You will need to add a container with the classname **yld-page**, eg:
+You will need to add a container with the classname **jsprint-page**, eg:
 ```html
 <!-- This is a normal page -->
-<div class="yld-page">
-  <h1 class="yld-title">Introduction</h1>
+<div class="jsprint-page">
+  <h1 class="jsprint-title">Introduction</h1>
   <p>Check the source code of this example in order to learn how to use this module</p>
 </div>
 ```
 
 # Create a "summary"
-In order to have a proper summary of your report, you just need to add the class name **yld-title** to the
+In order to have a proper summary of your report, you just need to add the class name **jsprint-title** to the
 title of a new section, eg:
 ```html
-<h1 class="yld-title">Introduction</h1>
-<h2 class="yld-title">Subsection</h2>
-<h3 class="yld-title">Subsubsection</h3>
-<h4 class="yld-title">Subsubsubsection</h4>
+<h1 class="jsprint-title">Introduction</h1>
+<h2 class="jsprint-title">Subsection</h2>
+<h3 class="jsprint-title">Subsubsection</h3>
+<h4 class="jsprint-title">Subsubsubsection</h4>
 ```
 
 then you will need to add the container where the summary should start and add the proper class
-to your page **yld-page-summary**. Here is a little example of how the structure should look like:
+to your page **jsprint-page-summary**. Here is a little example of how the structure should look like:
 ```html
-<div class="yld-page yld-page-summary">
-  <div class="yld-summary"></div>
+<div class="jsprint-page jsprint-page-summary">
+  <div class="jsprint-summary"></div>
 </div>
 ```
 
 # Adding a header
-Create a container with the classname **yld-def-header**. This will define the header of the page.
+Create a container with the classname **jsprint-def-header**. This will define the header of the page.
 This one will be added to every single pages of your report, so you need to define the content
 of it only once. The content of the header can be valid HTML or normal text, eg:
 ```html
-<div class="yld-def-header">
+<div class="jsprint-def-header">
   <p>This is my header - <i>on every pages</i></p>
 </div>
 ```
 
 # Adding bibliography
-Create a container with the classname **yld-bibliography**. This will define the container
+Create a container with the classname **jsprint-bibliography**. This will define the container
 that will contains the the bibliography. All the links that you define with '<a>' tags will
 appear as: link, text of the link and a reference number.
 ```html
@@ -133,7 +139,7 @@ appear as: link, text of the link and a reference number.
 
 then you will need to add the container where you want to show the biblography
 ```html
-<div class="yld-bibliography"></div>
+<div class="jsprint-bibliography"></div>
 ```
 
 # Adding a legend to an image
@@ -149,30 +155,7 @@ In order to add a legend after the image, just use the **title** attribut from t
 
 then you will need to add the container where you want to show the imageography
 ```html
-<div class="yld-imageography"></div>
-```
-
-# Configuration
-## Refresh the content automatically
-While you are editing your document, you can enable the option to automatically refresh it every X milliseconds.
-You can modify the interval of refreshes in the settings by changing:
-```javascript
-"auto-refresh": true,
-"auto-interval": 5000
-```
-
-## Adding number of the page
-The number of the page is automatically added by default. You can show or hide it by modifying
-the variable :
-```javascript
-"page-nbr": true,
-```
-
-## Adding number to titles
-The number of the title is automatically added by default. You can show or hide it by modifying
-the variable :
-```javascript
-"title-nbr": true,
+<div class="jsprint-imageography"></div>
 ```
 
 
@@ -182,8 +165,26 @@ Just edit the ***theme.css*** as you wish. It is not recommended to update
 
 # FAQ
 ## I don't want my title to appear in the summary
-When creating your title tag (H1, H2, H3, ...) don't add the class **yld-title**
+When creating your title tag (H1, H2, H3, ...) don't add the class **jsprint-title**
 to it. This will avoid the title to be added into the summary.
 
 # Contributions
 Yves Lange (author)
+
+# Comments
+```text
+Wanted to say thanks. You've done groundbreaking work on JsPrint. 
+Its a simple and elegant solution to reporting problem in PHP apps.
+We've been thinking about a solution for months and finally someone
+comes up with an excellent answer.
+So we'll be waiting for the next update.
+
+Thanks again.
+Peace be with you, Mohsin .R
+@WaysAll
+p.s. What is on the roadmap?
+```
+I'm waiting for some feedbacks and I'll continue to improve this lib that I'm using everyday.
+I already converted this lib into CoffeeScript so now... it's less verbose and I'll improve the
+H1,2,3,4 with the summarize functionnality. I also have the project to make it a bit more
+compatible with the other browser.

@@ -10,6 +10,6 @@ install:
 	#@sudo npm install -g bower
 	@echo "Installing brunch dependencies (NPM)"
 	@npm install
-	@cd app; bower install
+	@bower install
 clean:
 	@cd release/;rm -rf *;cd ..

@@ -59,11 +59,11 @@ class Jsprint
             JSP_TITLE3_NBR + "." + JSP_TITLE4_NBR
         $(title).text h_nbr + " " + t
         if nbrtitle % CONFIG.get("summary", "nbrtitle") is 0
-          $("." + _CONFIG["class"]["page-summary"])
+          $("." + CONFIG.getClass("page-summary"))
             .last().after "</div><div class='" +
-              _CONFIG["class"]["page-summary"] + " " +
-              _CONFIG["class"]["page"] + "'><div class='" +
-              _CONFIG["class"]["summary"] + "'></div>"
+              CONFIG.getClass("page-summary") + " " +
+              CONFIG.getClass("page") + "'><div class='" +
+              CONFIG.getClass("summary") + "'></div>"
           $("." + CONFIG.getClass("page-summary")).last().prepend header
         $("." + CONFIG.getClass("summary"))
           .last().append "<div class='" + CONFIG.getClass("summary") +

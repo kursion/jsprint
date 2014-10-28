@@ -163,7 +163,7 @@ Jsprint = (function() {
         }
         $(title).text(h_nbr + " " + t);
         if (nbrtitle % CONFIG.get("summary", "nbrtitle") === 0) {
-          $("." + _CONFIG["class"]["page-summary"]).last().after("</div><div class='" + _CONFIG["class"]["page-summary"] + " " + _CONFIG["class"]["page"] + "'><div class='" + _CONFIG["class"]["summary"] + "'></div>");
+          $("." + CONFIG.getClass("page-summary")).last().after("</div><div class='" + CONFIG.getClass("page-summary") + " " + CONFIG.getClass("page") + "'><div class='" + CONFIG.getClass("summary") + "'></div>");
           $("." + CONFIG.getClass("page-summary")).last().prepend(header);
         }
         return $("." + CONFIG.getClass("summary")).last().append("<div class='" + CONFIG.getClass("summary") + "-" + tag + " " + CONFIG.getClass("summary-entry") + "'>" + h_nbr + " " + t + "<div>" + pagenbr + "</div></div>");

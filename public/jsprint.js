@@ -94,7 +94,8 @@ require.register("jsprint/app", function(exports, require, module) {
 var Jsprint, M, jsprint;
 
 M = {
-  config: require('jsprint/config')
+  config: require('jsprint/config'),
+  utils: require('jsprint/utils')
 };
 
 Jsprint = (function() {
@@ -111,17 +112,14 @@ Jsprint = (function() {
 
   Jsprint.prototype.init = function() {
     this.renderImgLegends();
-    this.headerFooter();
-    this.aRef();
+    this.renderHeader();
+    this.renderFooter();
+    this.renderLinkReferences();
     return this.createSummary();
   };
 
   Jsprint.prototype.createSummary = function() {
     var JSP_TITLE2_NBR, JSP_TITLE3_NBR, JSP_TITLE4_NBR, JSP_TITLE_NBR, header, nbrtitle, pagenbr;
-    JSP_TITLE2_NBR = void 0;
-    JSP_TITLE3_NBR = void 0;
-    JSP_TITLE4_NBR = void 0;
-    JSP_TITLE_NBR = void 0;
     nbrtitle = void 0;
     pagenbr = void 0;
     JSP_TITLE_NBR = 0;
@@ -171,60 +169,68 @@ Jsprint = (function() {
     });
   };
 
-  Jsprint.prototype.aRef = function() {
-    var counter;
-    counter = 0;
-    return $("a").each(function() {
-      var link, ref, show, text;
-      counter++;
-      link = void 0;
-      ref = void 0;
-      show = void 0;
-      text = void 0;
+  Jsprint.prototype.renderLinkReferences = function() {
+    return $("a").each(function(i) {
+      var line, link, ref, show, text;
+      i++;
       link = $(this).attr("href");
       text = $(this).text();
       ref = $(this).attr("ref");
       show = text;
       if (ref !== void 0) {
-        show = ref + "(" + text + ")";
+        show = "" + ref + " (" + text + ")";
       }
-      $(this).append(" <sup>[" + counter + "]</sup>");
-      return $("." + CONFIG.getClass("bibliography")).append("<div>" + "<span class='index'>[" + counter + "] </span>" + "<span class='text'>" + show + ": " + "<span class='link'><a href='" + link + "'>" + link + "</a></div>");
+      $(this).append($("<sup/>").text(" [" + i + "]"));
+      line = $("<div/>").append($("<span/>").attr("class", "index").text("[" + i + "]"), $("<span/>").attr("class", "text").text(" " + show + ": "), $("<span/>").attr("class", "link").append($("<a/>").attr("href", link).text(link)));
+      return $("." + (CONFIG.getClass("bibliography"))).append(line);
     });
   };
 
   Jsprint.prototype.renderImgLegends = function() {
-    var counter;
-    counter = 0;
+    var i;
+    i = 0;
     return $("img").each(function() {
-      var ref, title;
+      var legendDOM, legendLineDOM, ref, title;
       title = $(this).attr("title");
       ref = $(this).attr("ref");
       if ((title != null) || (ref != null)) {
-        counter++;
-        $(this).after("          <div class='" + (CONFIG.getClass("img-legend")) + "'>          " + title + " <sup>" + counter + "</sup></div>");
-        return $("." + CONFIG.getClass("imageography")).append("          <div>[" + counter + "] " + title + " <i>(" + ref + "</i>)</div>");
+        i++;
+        legendDOM = $("<div/>").attr('class', CONFIG.getClass("img-legend")).html("" + title + "  <sup>" + i + "</sup>");
+        $(this).after(legendDOM);
+        legendLineDOM = $("<div/>").html("[" + i + "] " + title + " <i>(" + ref + ")</i>");
+        return M.utils.appendToClass(CONFIG.getClass("imageography"), legendLineDOM);
       }
     });
   };
 
   Jsprint.prototype._getHeader = function() {
-    return "<div class=" + CONFIG.getClass("header") + ">" + ($("." + CONFIG.getClass("def-header")).html() || "") + "</div>";
+    var defHeader, headerContent;
+    defHeader = $("." + (CONFIG.getClass('def-header'))).html() || "";
+    return headerContent = $("<div/>").attr("class", CONFIG.getClass("header")).html(defHeader);
   };
 
-  Jsprint.prototype.headerFooter = function() {
+  Jsprint.prototype._getFooter = function(i) {
+    var outof;
+    outof = $("<div/>").attr("class", CONFIG.getClass("footer-pagenbr")).text("" + (i + 1) + "/" + ($("." + (CONFIG.getClass("page"))).length));
+    return $("<div/>").attr("class", CONFIG.getClass("footer")).append(outof);
+  };
+
+  Jsprint.prototype.renderHeader = function() {
     var _this = this;
-    return $("." + CONFIG.getClass("page")).each(function(i, page) {
-      var outof, pagenbr;
-      outof = void 0;
-      pagenbr = void 0;
-      pagenbr = i + 1;
-      $(page).prepend(_this._getHeader());
-      $(page).append("<div class=" + CONFIG.getClass("footer") + "></div>");
-      outof = "";
-      outof = "/" + $("." + (CONFIG.getClass("page"))).length;
-      return $(page).find("." + CONFIG.getClass("footer")).append("<div class=" + CONFIG.getClass("pagenbr") + ">" + pagenbr + outof + "</div>");
+    return $("." + (CONFIG.getClass("page"))).each(function(i, page) {
+      return $(page).prepend(_this._getHeader());
     });
+  };
+
+  Jsprint.prototype.renderFooter = function() {
+    var _this = this;
+    return $("." + (CONFIG.getClass("page"))).each(function(i, page) {
+      return $(page).append(_this._getFooter(i));
+    });
+  };
+
+  Jsprint.prototype.toString = function() {
+    return "Version: JSPrint " + (CONFIG.getVersion()) + "\n      CLASSES: " + (CONFIG.getClasses());
   };
 
   return Jsprint;
@@ -232,6 +238,8 @@ Jsprint = (function() {
 })();
 
 jsprint = new Jsprint();
+
+console.log(jsprint.toString());
 });
 
 ;require.register("jsprint/config", function(exports, require, module) {
@@ -242,22 +250,22 @@ module.exports = exp = {};
 exp.Main = Main = (function() {
   var CLASS, CONFIG, VERSION;
 
+  VERSION = "1.2";
+
   CLASS = {
-    title: "jsprint-title",
-    page: "jsprint-page",
-    header: "jsprint-page-header",
-    footer: "jsprint-page-footer",
-    summary: "jsprint-summary",
-    bibliography: "jsprint-bibliography",
-    imageography: "jsprint-imageography",
-    pagenbr: "jsprint-pagenbr",
+    "title": "jsprint-title",
+    "page": "jsprint-page",
+    "header": "jsprint-page-header",
+    "footer": "jsprint-page-footer",
+    "summary": "jsprint-summary",
+    "bibliography": "jsprint-bibliography",
+    "imageography": "jsprint-imageography",
+    "footer-pagenbr": "jsprint-pagenbr",
     "def-header": "jsprint-def-header",
     "page-summary": "jsprint-page-summary",
     "summary-entry": "jsprint-summary-entry",
     "img-legend": "jsprint-img-legend"
   };
-
-  VERSION = "1.1";
 
   CONFIG = {
     summary: {
@@ -269,12 +277,18 @@ exp.Main = Main = (function() {
     null;
   }
 
-  Main.prototype.print = function() {
-    return console.log("CLASSES", CLASS);
-  };
-
   Main.prototype.getClass = function(className) {
     return CLASS[className];
+  };
+
+  Main.prototype.getClasses = function() {
+    var k, v, _results;
+    _results = [];
+    for (k in CLASS) {
+      v = CLASS[k];
+      _results.push([k]);
+    }
+    return _results;
   };
 
   Main.prototype.getVersion = function() {
@@ -288,6 +302,16 @@ exp.Main = Main = (function() {
   return Main;
 
 })();
+});
+
+;require.register("jsprint/utils", function(exports, require, module) {
+var appendToClass, exp;
+
+module.exports = exp = {};
+
+exp.appendToClass = appendToClass = function(className, content) {
+  return $("." + className).append(content);
+};
 });
 
 ;

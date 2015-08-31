@@ -131,7 +131,7 @@ of it only once. The content of the header can be valid HTML or normal text, eg:
 
 # Adding bibliography
 Create a container with the classname **jsprint-bibliography**. This will define the container
-that will contains the the bibliography. All the links that you define with '<a>' tags will
+that will contains the the bibliography. All the links that you define with `<a>` tags will
 appear as: link, text of the link and a reference number.
 ```html
 <a href='http://mylink.com'>This is a link</a>
@@ -158,6 +158,29 @@ then you will need to add the container where you want to show the imageography
 <div class="jsprint-imageography"></div>
 ```
 
+# Configuration
+## Refresh the content automatically
+While you are editing your document, you can enable the option to automatically refresh it every X milliseconds.
+You can modify the interval of refreshes in the settings by changing:
+```javascript
+"auto-refresh": true,
+"auto-interval": 5000
+```
+
+## Adding number of the page
+The number of the page is automatically added by default. You can show or hide it by modifying
+the variable :
+```javascript
+"page-nbr": true,
+```
+
+## Adding number to titles
+The number of the title is automatically added by default. You can show or hide it by modifying
+the variable :
+```javascript
+"title-nbr": true,
+```
+
 
 # Style customization
 Just edit the ***theme.css*** as you wish. It is not recommended to update
@@ -173,7 +196,7 @@ Yves Lange (author)
 
 # Comments
 ```text
-Wanted to say thanks. You've done groundbreaking work on JsPrint. 
+Wanted to say thanks. You've done groundbreaking work on JsPrint.
 Its a simple and elegant solution to reporting problem in PHP apps.
 We've been thinking about a solution for months and finally someone
 comes up with an excellent answer.

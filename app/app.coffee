@@ -1,5 +1,6 @@
 M = {
   config: require 'jsprint/config'
+  utils:  require 'jsprint/utils'
 }
 
 class Jsprint
@@ -7,21 +8,37 @@ class Jsprint
   CONFIG = new M.config.Main()
 
   constructor: () ->
-    #CONFIG.print()
     console.info? "Jsprint version:", CONFIG.getVersion()
     @init()
 
   init: ->
     @renderImgLegends()
-    @headerFooter()
-    @aRef()
+    @renderHeader()
+    @renderFooter()
+    @renderLinkReferences()
     @createSummary()
 
   createSummary: ->
-    JSP_TITLE2_NBR = undefined
-    JSP_TITLE3_NBR = undefined
-    JSP_TITLE4_NBR = undefined
-    JSP_TITLE_NBR = undefined
+    # Generating tags
+
+    # TODO: test new method
+    # tags = []
+    # tagsCounter = {}
+    # for i in [1..10]
+    #   tags.push "H#{i}"
+    #   tagsCounter["H#{i}"] ||= 0
+    #   tagsCounter["H#{i}"]++
+    #
+    # console.log tags, tagsCounter
+    # console.log tags.join(" ")
+    # $("." + CONFIG.getClass("page")).each((i, page) ->
+    #   console.log i, page
+    #   $(tags.join(" ")).each(  ->
+    #     console.log i
+    #   )
+    # )
+
+    # ----------------- Old
     nbrtitle = undefined
     pagenbr = undefined
     JSP_TITLE_NBR = 0
@@ -70,56 +87,67 @@ class Jsprint
           "-" + tag + " " + CONFIG.getClass("summary-entry") +
           "'>" + h_nbr + " " + t + "<div>" + pagenbr + "</div></div>"
 
-  aRef: ->
-    counter = 0
-    $("a").each ->
-      counter++
-      link = undefined
-      ref = undefined
-      show = undefined
-      text = undefined
+  renderLinkReferences: ->
+    $("a").each (i) ->
+      i++
       link = $(this).attr("href")
       text = $(this).text()
-      ref = $(this).attr("ref")
+      ref  = $(this).attr("ref")
       show = text
-      show = ref + "(" + text + ")"  if ref isnt undefined
-      $(this).append " <sup>[" + counter + "]</sup>"
-      $("." + CONFIG.getClass("bibliography"))
-        .append "<div>" + "<span class='index'>[" +
-          counter + "] </span>" + "<span class='text'>" +
-          show + ": " + "<span class='link'><a href='" + link + "'>" +
-          link + "</a></div>"
+      show = "#{ref} (#{text})"  if ref isnt undefined
+      $(this).append(
+        $("<sup/>").text(" [#{i}]")
+      )
+      line = $("<div/>").append(
+        $("<span/>").attr("class", "index").text("[#{i}]")
+        $("<span/>").attr("class", "text").text(" #{show}: ")
+        $("<span/>").attr("class", "link").append(
+          $("<a/>").attr("href", link).text(link)
+        )
+      )
+      $(".#{CONFIG.getClass("bibliography")}").append(line)
 
   renderImgLegends: ->
-    counter = 0
+    i = 0
     $("img").each ->
       title = $(this).attr("title")
       ref   = $(this).attr("ref")
       if title? || ref?
-        counter++
-        $(this).after "
-          <div class='#{CONFIG.getClass("img-legend")}'>
-          #{title} <sup>#{counter}</sup></div>"
-        # TODO: this should be a function (appendImageography)
-        $("." + CONFIG.getClass("imageography")).append "
-          <div>[#{counter}] #{title} <i>(#{ref}</i>)</div>"
+        i++
+        legendDOM  = $("<div/>")
+          .attr('class', CONFIG.getClass("img-legend"))
+          .html("#{title}  <sup>#{i}</sup>")
+        $(this).after(legendDOM)
+
+        legendLineDOM = $("<div/>")
+          .html("[#{i}] #{title} <i>(#{ref})</i>")
+        M.utils.appendToClass(CONFIG.getClass("imageography"), legendLineDOM)
 
   _getHeader: ->
-    "<div class=" + CONFIG.getClass("header") + ">" +
-      ($("." + CONFIG.getClass("def-header")).html() or "") + "</div>"
+    defHeader = $(".#{CONFIG.getClass('def-header')}").html() or ""
+    headerContent = $("<div/>")
+      .attr("class", CONFIG.getClass("header"))
+      .html(defHeader)
 
-  headerFooter: ->
-    $("." + CONFIG.getClass("page")).each (i, page) =>
-      outof = undefined
-      pagenbr = undefined
-      pagenbr = i + 1
+  _getFooter: (i) ->
+    outof = $("<div/>")
+      .attr("class", CONFIG.getClass("footer-pagenbr"))
+      .text("#{i+1}/#{$(".#{CONFIG.getClass("page")}").length}")
+    $("<div/>")
+      .attr("class", CONFIG.getClass("footer"))
+      .append(outof)
+
+  renderHeader: ->
+    $(".#{CONFIG.getClass("page")}").each (i, page) =>
       $(page).prepend @_getHeader()
-      $(page).append "<div class=" + CONFIG.getClass("footer") + "></div>"
-      outof = ""
-      outof = "/" +
-        $(".#{CONFIG.getClass("page")}").length
-      $(page).find("." + CONFIG.getClass("footer")).append "<div class=" +
-        CONFIG.getClass("pagenbr") + ">" + pagenbr + outof +
-        "</div>"
+
+  renderFooter: ->
+    $(".#{CONFIG.getClass("page")}").each (i, page) =>
+      $(page).append  @_getFooter(i)
+
+  toString: ->
+    return "Version: JSPrint #{CONFIG.getVersion()}\n
+      CLASSES: #{CONFIG.getClasses()}"
 
 jsprint = new Jsprint()
+console.log jsprint.toString()
